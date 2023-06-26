@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TestSphereMovement : MonoBehaviour
 {
@@ -8,9 +8,32 @@ public class TestSphereMovement : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     // Start is called before the first frame update
 
+    public static List<TestSphereMovement> players = new List<TestSphereMovement>();
+
     void Awake()
     {
-        
+        players.Add(this);
+        transform.position.Set(1.1f, transform.position.y, transform.position.z);
+        PlayerInput network = GetComponent<PlayerInput>();
+        if (network != null)
+        {
+            print("Network Found");
+            Camera[] cameras = FindObjectsOfType<Camera>();
+            if (cameras.Length > 0)
+            {
+                Camera cam = cameras[0];
+                print("attaching Camera");
+                cam.transform.position = new Vector3(0, 5, -8.5f);
+                cam.transform.rotation = Quaternion.Euler(20, 0, 0);
+                cam.transform.SetParent(this.transform, false);
+            }
+            
+        }
+    }
+
+    private void OnDestroy()
+    {
+        players.Remove(this);
     }
 
     void Start()
