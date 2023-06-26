@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energy: 10
   rigid: {fileID: 2987441739809022935}
-  charging: 1
+  charging: 0
   slowcharge: 0
   chargeTime: 1
   maxEnergy: 10
@@ -200,6 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   rb: {fileID: 2987441739809022935}
+  lookAngle: {x: 60, y: 0, z: 0}
+  lookPosition: {x: 0, y: 15, z: -10}
 --- !u!136 &4497878605756549509
 CapsuleCollider:
   m_ObjectHideFlags: 0

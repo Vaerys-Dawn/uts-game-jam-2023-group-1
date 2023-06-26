@@ -6,6 +6,8 @@ public class TestSphereMovement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Vector3 lookAngle = new Vector3(60, 0, 0);
+    [SerializeField] private Vector3 lookPosition = new Vector3(0, 20, -10);
     // Start is called before the first frame update
 
     public static List<TestSphereMovement> players = new List<TestSphereMovement>();
@@ -23,8 +25,8 @@ public class TestSphereMovement : MonoBehaviour
             {
                 Camera cam = cameras[0];
                 print("attaching Camera");
-                cam.transform.position = new Vector3(0, 5, -8.5f);
-                cam.transform.rotation = Quaternion.Euler(20, 0, 0);
+                cam.transform.position = lookPosition;
+                cam.transform.rotation = Quaternion.Euler(lookAngle.x, lookAngle.y, lookAngle.z);
                 cam.transform.SetParent(this.transform, false);
             }
             
