@@ -7,29 +7,42 @@ public class HealthScript : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private int energy;
+    public int energy;
     public Rigidbody rigid;
     public bool charging = false;
     public bool slowcharge = false;
-    public int chargeTime = 10;
+    public int chargeTime = 2;
     public int maxEnergy = 10;
     public int slowchargeMult = 2;
     public bool alive = true;
+    private int nextUpdate = 1;
 
-    private void Awake()
+    public void Awake()
     {
-        energy = 10;
+        rigid = GetComponent<Rigidbody>();
+        energy = maxEnergy;
     }
 
-    private void FixedUpdate()
+    public void Update()
     {
-        int ChargeRate = chargeTime;
+        int chargeRate = chargeTime;
         if (slowcharge)
         {
-            ChargeRate *= slowchargeMult;
+            chargeRate *= slowchargeMult;
         }
-        if (Time.fixedDeltaTime % chargeTime == 0 && charging)
+        // If the next update is reached
+        if (Time.time >= nextUpdate)
+        {      
+            nextUpdate = Mathf.FloorToInt(Time.time) + chargeRate;
+            AddCharge();
+        }
+    }
+
+    public void AddCharge()
+    {
+        if (charging)
         {
+            print("Helo");
             energy++;
             ClampEnergy();
         }
@@ -49,7 +62,7 @@ public class HealthScript : MonoBehaviour
         if (energy == 10) alive = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "ChargeBay")
         {
@@ -62,7 +75,7 @@ public class HealthScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    public void OnCollisionExit(Collision collision)
     {
         if (collision.collider.tag == "ChargeBay")
         {

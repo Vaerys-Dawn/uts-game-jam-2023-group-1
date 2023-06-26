@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 72907970}
   - component: {fileID: 72907974}
   - component: {fileID: 72907973}
+  - component: {fileID: 72907975}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -286,6 +287,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 96
   m_CollisionDetection: 0
+--- !u!114 &72907975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72907968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1092f74a490cd434f9f8dedb376d95c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energy: 10
+  rigid: {fileID: 72907974}
+  charging: 1
+  slowcharge: 0
+  chargeTime: 1
+  maxEnergy: 10
+  slowchargeMult: 2
+  alive: 1
 --- !u!1 &109616073
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,10 +465,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy: 0
+  rigid: {fileID: 0}
   charging: 0
   slowcharge: 0
   chargeTime: 10
   maxEnergy: 10
+  slowchargeMult: 2
+  alive: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +708,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1498357973
