@@ -62,26 +62,26 @@ public class HealthScript : MonoBehaviour
         if (energy == 10) alive = true;
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collider)
     {
-        if (collision.collider.tag == "ChargeBay")
+        if (collider.tag == "ChargeBay")
         {
             charging = true;
         }
-        if (collision.collider.tag == "SlowChargeBay")
+        if (collider.tag == "SlowChargeBay")
         {
             charging = true;
             slowcharge = true;
         }
     }
 
-    public void OnCollisionExit(Collision collision)
+    public void OnTriggerExit(Collider collider)
     {
-        if (collision.collider.tag == "ChargeBay")
+        if (collider.tag == "ChargeBay")
         {
             charging = false;
         }
-        if (collision.collider.tag == "SlowChargeBay")
+        if (collider.tag == "SlowChargeBay")
         {
             charging = false;
             slowcharge = false;
