@@ -8,7 +8,11 @@ public class BossScripty : MonoBehaviour
 
     public int health;
     public int damageValue;
-    int nextAttack;
+    float nextAttack;
+
+    ShipScript shipScript;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +22,15 @@ public class BossScripty : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (nextAttack == 0)
+        if (nextAttack <= 0)
         {
-            nextAttack = Random.RandomRange(5, 15);
+            nextAttack = Random.Range(5f, 15f);
+            //attack
+            //shipScript.hit = true;
+        }
+        else 
+        {
+            nextAttack -= Time.deltaTime;
         }
        
     }

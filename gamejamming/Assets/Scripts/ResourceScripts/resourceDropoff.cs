@@ -6,6 +6,7 @@ public class resourceDropoff : MonoBehaviour
 {
 
     public int Value = 0;
+    public bool pickup = true;
 
 
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class resourceDropoff : MonoBehaviour
     }
 
     void OnCollisionEnter (Collision col) {
-        if (col.gameObject.tag == gameObject.tag && Value == 0) {
+        if (col.gameObject.tag == gameObject.tag && pickup) {
             Debug.Log("Collision Detected");
             Destroy(col.gameObject);
             Value++;

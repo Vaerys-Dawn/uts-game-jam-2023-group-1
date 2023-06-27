@@ -23,5 +23,4 @@ public class wallRepair : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
