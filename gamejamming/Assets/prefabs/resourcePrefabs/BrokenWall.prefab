@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7215301411020487787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3297380915847302037}
+  m_Layer: 0
+  m_Name: brokengraphicpos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3297380915847302037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215301411020487787}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.402, y: 0, z: 0.57}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574289107656692443}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &8549574153964826663
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +44,7 @@ GameObject:
   - component: {fileID: 6483521082925563180}
   - component: {fileID: 7583229898207317188}
   - component: {fileID: 8829773240427171677}
-  - component: {fileID: 2225028634286836323}
+  - component: {fileID: -1843154270887781928}
   m_Layer: 0
   m_Name: BrokenWall
   m_TagString: Repair
@@ -32,9 +63,10 @@ Transform:
   m_LocalPosition: {x: 1.3647592, y: 3.58, z: 5.09}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3297380915847302037}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8172070030205559034
 MeshFilter:
@@ -134,7 +166,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2225028634286836323
+--- !u!114 &-1843154270887781928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +175,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8549574153964826663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dc02c97bd248e342abc2194256e241b, type: 3}
+  m_Script: {fileID: 11500000, guid: e6ced2d551c390048872d865d6d3f323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  broken: 0
+  brokenWallPrefab: {fileID: 1767103860173626764, guid: 50f3a472e0869ee4b811cff8684ce169, type: 3}
+  brokenWallPos: {fileID: 3297380915847302037}

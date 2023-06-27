@@ -101,6 +101,7 @@ public class HealthScript : NetworkBehaviour
 
         if (collider.tag == "Door")
         {
+
             print("door found");
             doorHandler handler = collider.GetComponent<doorHandler>();
             if (handler.IsClosed())
@@ -112,6 +113,7 @@ public class HealthScript : NetworkBehaviour
                 handler.OpenDoor();
                 RemoveCharge();
             }
+
 
         }
     }

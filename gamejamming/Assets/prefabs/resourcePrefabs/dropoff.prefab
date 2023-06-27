@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 340578082672389855}
   - component: {fileID: 7020995341407884880}
   - component: {fileID: 1180526429830941641}
-  - component: {fileID: 2521114275683890619}
+  - component: {fileID: 5435179330811681416}
   m_Layer: 0
   m_Name: dropoff
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3040283696905679303
 MeshFilter:
@@ -135,7 +135,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &2521114275683890619
+--- !u!114 &5435179330811681416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 971710551531468962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60cd925201bd1d049a1a2a629d31dbc0, type: 3}
+  m_Script: {fileID: 11500000, guid: d5bb06558db2fb449b9edae8f32f42c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 0
+  pickup: 1

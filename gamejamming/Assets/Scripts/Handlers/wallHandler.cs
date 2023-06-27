@@ -8,6 +8,11 @@ public class wallHandler : MonoBehaviour
     public bool broken = false;
     public GameObject brokenWallPrefab;
     GameObject brokenWall;
+    private bool hole = false;
+    public Transform brokenWallPos;
+
+    //Quaternion = brokenWallPrefab.Transformation.rotation;
+
 
 
     // Start is called before the first frame update
@@ -19,14 +24,21 @@ public class wallHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(broken)
+        if(hole == false && broken == true)
         {
             //spawn object
-            brokenWall = (GameObject)Instantiate(brokenWallPrefab, transform.position, Quaternion.identity);
+            Debug.Log("hole made");
+            brokenWall = (GameObject)Instantiate(brokenWallPrefab, brokenWallPos.position, brokenWallPos.rotation);
+            brokenWall.transform.SetParent(brokenWallPos);
+            
+            hole = true;
+            
         }
 
         if (brokenWall == null)
         {
+            Debug.Log("no more hole");
+            hole = false;
             broken = false;
         }
     }
