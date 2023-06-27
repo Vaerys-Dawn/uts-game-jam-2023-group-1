@@ -17,4 +17,11 @@ public class NetworkUI : MonoBehaviour
     	hostButton.onClick.AddListener(() => NetworkManager.Singleton.StartHost());
     	clientButton.onClick.AddListener(() => NetworkManager.Singleton.StartClient());
     }
+
+    public void onClick()
+    {
+        GameObject.Find("ServerButton").SetActive(false);
+        GameObject.Find("HostButton").SetActive(false);
+        GameObject.Find("ClientButton").SetActive(false);
+    }
 }
