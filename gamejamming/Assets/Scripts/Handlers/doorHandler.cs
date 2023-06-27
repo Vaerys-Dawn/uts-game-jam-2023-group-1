@@ -8,6 +8,9 @@ public class doorHandler : NetworkBehaviour
 {
 
     public bool jam = false;
+    public AudioSource doorSound;
+    public AudioClip open;
+    public AudioClip close;
     private bool isOpen = false;
     int closeTime = 90;
     int closeCounter = 0;
@@ -30,7 +33,7 @@ public class doorHandler : NetworkBehaviour
         {
             closeCounter--;
         }
-        else if (closeCounter == 0)
+        else if (closeCounter == 0 && isOpen)       
         {
             CloseDoor();
         }
@@ -38,6 +41,8 @@ public class doorHandler : NetworkBehaviour
 
     private void CloseDoor()
     {
+        doorSound.clip = close;
+        doorSound.Play();
         // todo close animation
         // todo change collision shape
         isOpen = false;
@@ -53,6 +58,8 @@ public class doorHandler : NetworkBehaviour
             jam = false;
             // todo remove jammed stuff
         }
+        doorSound.clip = open;
+        doorSound.Play();
         closeCounter = closeTime;
         isOpen = true;
     }

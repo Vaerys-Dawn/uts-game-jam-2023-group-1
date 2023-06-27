@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TestSphereMovement : NetworkBehaviour
 {
+    public AudioSource step;
     [SerializeField] private float movementSpeed;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 lookAngle = new Vector3(60, 0, 0);
@@ -14,6 +16,7 @@ public class TestSphereMovement : NetworkBehaviour
     [SerializeField] private GameObject robotModel;
     private HealthScript healthScript;
     bool enableInput = false;
+    int coolDown = 0;
     // Start is called before the first frame update
 
     public static List<TestSphereMovement> players = new List<TestSphereMovement>();
@@ -58,7 +61,8 @@ public class TestSphereMovement : NetworkBehaviour
         if (!enableInput || !healthScript.alive) { return; }
         float xInput = Input.GetAxisRaw("Horizontal");
         float zInput = Input.GetAxisRaw("Vertical");
-        rb.velocity = new Vector3(xInput * movementSpeed, rb.velocity.y, zInput * movementSpeed);
+<<<<<<< Updated upstream:gamejamming/Assets/Scripts/TestSphereMovement.cs
+        rb.velocity = new Vector3(xInput, rb.velocity.y, zInput).normalized * movementSpeed;
 
 		bool playerHasHorizontalSpeed = Mathf.Abs(GetComponent<Rigidbody>().velocity.z) > Mathf.Epsilon;
 
@@ -84,4 +88,17 @@ public class TestSphereMovement : NetworkBehaviour
         }
 
 	}
+=======
+        rb.velocity = new Vector3(xInput * movementSpeed, rb.velocity.y, zInput * movementSpeed);
+        if (coolDown <= 0)
+        { 
+            if (rb.velocity.x > 0.2f || rb.velocity.z > 0.2f || rb.velocity.x < -0.2f || rb.velocity.z < -0.2f)
+            {
+                step.Play();
+                coolDown = 8;
+            }
+        }
+        coolDown--;
+    }
+>>>>>>> Stashed changes:gamejamming/Assets/TestSphereMovement.cs
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -259,6 +259,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1037417652543030858, guid: 947a267c61d1dd449aeb517242eed175, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 334721309
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884132082267535701, guid: 947a267c61d1dd449aeb517242eed175, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 593772520
+      objectReference: {fileID: 0}
     - target: {fileID: 4694442291557098662, guid: 947a267c61d1dd449aeb517242eed175, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -303,9 +311,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5353057563512816092, guid: 947a267c61d1dd449aeb517242eed175, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1864542662
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533534575918055407, guid: 947a267c61d1dd449aeb517242eed175, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 894482388
+      objectReference: {fileID: 0}
     - target: {fileID: 6351451493317077889, guid: 947a267c61d1dd449aeb517242eed175, type: 3}
       propertyPath: m_Name
       value: Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734570097277144723, guid: 947a267c61d1dd449aeb517242eed175, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2861428954
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561496716926398304, guid: 947a267c61d1dd449aeb517242eed175, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4097655988
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -348,8 +372,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94, y: -47}
-  m_SizeDelta: {x: 100, y: 20}
+  m_AnchoredPosition: {x: 94, y: -15}
+  m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &492321459
 MonoBehaviour:
