@@ -58,7 +58,7 @@ public class TestSphereMovement : NetworkBehaviour
         if (!enableInput || !healthScript.alive) { return; }
         float xInput = Input.GetAxisRaw("Horizontal");
         float zInput = Input.GetAxisRaw("Vertical");
-        rb.velocity = new Vector3(xInput * movementSpeed, rb.velocity.y, zInput * movementSpeed);
+        rb.velocity = new Vector3(xInput, rb.velocity.y, zInput).normalized * movementSpeed;
 
 		bool playerHasHorizontalSpeed = Mathf.Abs(GetComponent<Rigidbody>().velocity.z) > Mathf.Epsilon;
 
