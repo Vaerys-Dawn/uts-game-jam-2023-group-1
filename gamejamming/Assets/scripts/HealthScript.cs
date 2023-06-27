@@ -70,7 +70,11 @@ public class HealthScript : NetworkBehaviour
         
         }
         if (energy > maxEnergy) energy = maxEnergy;
-        if (energy == 0) alive = false;
+        if (energy == 0)
+        {
+            alive = false;
+            rigid.velocity.Set(0, 0, 0);
+        }
         if (energy == 10) alive = true;
     }
 
