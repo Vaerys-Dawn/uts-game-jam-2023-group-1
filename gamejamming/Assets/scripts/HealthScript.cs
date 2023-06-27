@@ -17,6 +17,10 @@ public class HealthScript : MonoBehaviour
     public bool alive = true;
     private int nextUpdate = 1;
 
+    //Animator
+    [SerializeField] private Animator robotAnimator;
+    [SerializeField] private float animTime;
+
     public void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -57,10 +61,25 @@ public class HealthScript : MonoBehaviour
 
     private void ClampEnergy()
     {
-        if (energy < 0) energy = 0;
+        if (energy < 0) 
+        { 
+            energy = 0;
+            robotAnimator.SetBool("isFalling", true);
+            StartCoroutine(StopFallAnimation());
+        
+        }
         if (energy > maxEnergy) energy = maxEnergy;
         if (energy == 0) alive = false;
         if (energy == 10) alive = true;
+    }
+
+
+    IEnumerator StopFallAnimation() 
+    {
+        yield return new WaitForSeconds(animTime);
+        robotAnimator.SetBool("isFalling", false);
+    
+    
     }
 
     public void OnTriggerEnter(Collider collider)

@@ -9,6 +9,7 @@ public class TestSphereMovement : NetworkBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 lookAngle = new Vector3(60, 0, 0);
     [SerializeField] private Vector3 lookPosition = new Vector3(0, 20, -10);
+    [SerializeField] private Animator playerAnimator;
     bool enableInput = false;
     // Start is called before the first frame update
 
@@ -53,5 +54,20 @@ public class TestSphereMovement : NetworkBehaviour
         float zInput = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector3(xInput * movementSpeed, rb.velocity.y, zInput * movementSpeed);
 
-    }
+		bool playerHasHorizontalSpeed = Mathf.Abs(GetComponent<Rigidbody>().velocity.z) > Mathf.Epsilon;
+
+        if (playerHasHorizontalSpeed)
+        {
+            playerAnimator.SetBool("isWalking", true);
+
+        }
+
+        else 
+        {
+
+            playerAnimator.SetBool("isWalking", false);
+        
+        }
+
+	}
 }
