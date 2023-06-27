@@ -50,6 +50,7 @@ public class HealthScript : MonoBehaviour
 
     public void RemoveCharge()
     {
+        // todo play remove charge sound
         energy--;
         ClampEnergy();
     }
@@ -76,8 +77,14 @@ public class HealthScript : MonoBehaviour
 
         if (collider.tag == "Door")
         {
-            if (collider.toClose)
+            doorHandler handler = collider.GetComponent<doorHandler>();
+            if (handler.IsClosed())
             {
+                if (handler.jam)
+                {
+                    RemoveCharge();
+                }
+                handler.OpenDoor();
                 RemoveCharge();
             }
 
