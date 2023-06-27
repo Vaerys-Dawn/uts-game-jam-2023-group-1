@@ -15,9 +15,9 @@ public class doorHandler : NetworkBehaviour
     int closeTime = 90;
     int closeCounter = 0;
     SkinnedMeshRenderer renderer;
-    private float lerpPoint= 3;
+    private float lerpPoint= 0.5f;
     float lerpTime = 0;
-    float lerpNow = 0;
+    float lerpNow = 100;
 
     public void Start()
     {
@@ -47,6 +47,7 @@ public class doorHandler : NetworkBehaviour
         else if (closeCounter == 0 && isOpen)       
         {
             CloseDoor();
+  
         }
     }
 
@@ -54,6 +55,7 @@ public class doorHandler : NetworkBehaviour
     {
         doorSound.clip = close;
         doorSound.Play();
+        lerpTime = 0;
         // todo close animation
         // todo change collision shape
         isOpen = false;
@@ -64,6 +66,7 @@ public class doorHandler : NetworkBehaviour
     {
         // todo door animation
         // todo change colision shape
+        lerpTime = 0;
         if (jam)
         {
             jam = false;
