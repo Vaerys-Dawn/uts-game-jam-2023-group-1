@@ -8,9 +8,9 @@ public class ShipScript : MonoBehaviour
 
     public int health = 100; 
     public bool hit = false;
-    public GameObject[] engines;
-    public GameObject[] doors;
-    public GameObject[] walls;
+    public engineHandler[] engines;
+    public doorHandler[] doors;
+    public wallHandler[] walls;
     private int engineLevel = 0;
     private int damageType;
     public int dmgRange = 3;
@@ -45,12 +45,12 @@ public class ShipScript : MonoBehaviour
                 case 1:
                     //wall break
                     hitChoice = Random.Range(1, walls.Length);
-                    walls[hitChoice].broken == true;
+                    walls[hitChoice].broken = true;
                     break;
                 case 2:
                     //door jam
                     hitChoice = Random.Range(1, doors.Length);
-                    doors[hitChoice].jam == true;
+                    doors[hitChoice].jam = true;
                     break;
                 default:
                     //nothing
@@ -71,7 +71,7 @@ public class ShipScript : MonoBehaviour
     {
         for (int i = 0; i < engines.Length; i++)
         {
-            engineLevel += engines[i].enginePower;
+            engineLevel += (int)engines[i].enginePower;
         }
 
         return engineLevel;
