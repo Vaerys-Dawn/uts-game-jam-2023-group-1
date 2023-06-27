@@ -73,6 +73,15 @@ public class HealthScript : MonoBehaviour
             charging = true;
             slowcharge = true;
         }
+
+        if (collider.tag == "Door")
+        {
+            if (collider.toClose)
+            {
+                RemoveCharge();
+            }
+
+        }
     }
 
     public void OnTriggerExit(Collider collider)
