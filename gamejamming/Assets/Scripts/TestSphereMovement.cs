@@ -11,6 +11,7 @@ public class TestSphereMovement : NetworkBehaviour
     [SerializeField] private Vector3 lookPosition = new Vector3(0, 20, -10);
 
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private GameObject robotModel;
     private HealthScript healthScript;
     bool enableInput = false;
     // Start is called before the first frame update
@@ -71,6 +72,14 @@ public class TestSphereMovement : NetworkBehaviour
         {
 
             playerAnimator.SetBool("isWalking", false);
+        
+        }
+
+        //Rotate in Direction of Movement
+        if (rb.velocity.magnitude != 0) 
+        {
+
+            robotModel.transform.rotation = Quaternion.Lerp(robotModel.transform.rotation, Quaternion.LookRotation(rb.velocity), 2f);
         
         }
 

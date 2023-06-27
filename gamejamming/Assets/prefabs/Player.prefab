@@ -141,7 +141,7 @@ MonoBehaviour:
   slowchargeMult: 2
   alive: 1
   robotAnimator: {fileID: 0}
-  animTime: 0
+  animTime: 2
 --- !u!114 &6076571574533942314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +209,7 @@ MonoBehaviour:
   lookAngle: {x: 60, y: 0, z: 0}
   lookPosition: {x: 0, y: 20, z: -10}
   playerAnimator: {fileID: 2461327868081369719}
+  robotModel: {fileID: 9188355751986328247}
 --- !u!136 &8567808896295243118
 CapsuleCollider:
   m_ObjectHideFlags: 0
