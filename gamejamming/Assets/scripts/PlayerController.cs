@@ -6,12 +6,14 @@ using UnityEngine;
 public class PlayerController : NetworkBehaviour
 {
     public Transform carrying;
-    public Vector3 carryingPosition = new Vector3(2, 0, 0);
+    public Transform carryingPosition;
+    private HealthScript heldScript;
     // Start is called before the first frame update
 
     public void Die()
     {
         carrying = null;
+        heldScript = null;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -23,12 +25,17 @@ public class PlayerController : NetworkBehaviour
             case "Player":
                 HealthScript healthScript = other.transform.GetComponent<HealthScript>();
                 if (healthScript != null && !healthScript.alive)
+                {
                     carrying = other.transform;
+                    heldScript = healthScript;
+                }
+     
                 break;
             case "Ammo":
             case "Fuel":
             case "RepairKit":
                 carrying = other.transform;
+                heldScript = null;
                 break;
         }
     }
@@ -36,7 +43,7 @@ public class PlayerController : NetworkBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position + carryingPosition, 0.2f);
+        Gizmos.DrawWireSphere(carryingPosition.position, 0.2f);
     }
 
     // Update is called once per frame
@@ -45,6 +52,11 @@ public class PlayerController : NetworkBehaviour
         if (carrying == null) { 
             return;
         }
-        carrying.transform.position = transform.position + carryingPosition;
+        if(heldScript != null && heldScript.energy != 0)
+        {
+            carrying = null;
+            heldScript = null;
+        } 
+        carrying.transform.position = carryingPosition.position;
     }
 }
