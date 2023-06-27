@@ -14,8 +14,15 @@ public class doorHandler : NetworkBehaviour
     private bool isOpen = false;
     int closeTime = 90;
     int closeCounter = 0;
+    SkinnedMeshRenderer renderer;
+    private float lerpPoint= 3;
+    float lerpTime = 0;
+    float lerpNow = 0;
 
-
+    public void Start()
+    {
+        renderer = GetComponent<SkinnedMeshRenderer>();
+    }
     public void JamDoor()
     {
         if (isOpen && !jam)
@@ -29,6 +36,10 @@ public class doorHandler : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        lerpNow = Mathf.Lerp(isOpen ? 0 : 100, isOpen ? 100 : 0, lerpTime/lerpPoint);
+        lerpTime += Time.deltaTime;
+        renderer.SetBlendShapeWeight(0, lerpNow);
+        
         if (closeCounter > 0)
         {
             closeCounter--;
