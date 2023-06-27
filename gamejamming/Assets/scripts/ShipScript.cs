@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipScript : MonoBehaviour
 {
 
-/*
+
     public int health = 100; 
     public bool hit = false;
     public GameObject[] engines;
@@ -45,12 +45,12 @@ public class ShipScript : MonoBehaviour
                 case 1:
                     //wall break
                     hitChoice = Random.Range(1, walls.Length);
-                    //walls(hitChoice).broken == true;
+                    walls[hitChoice].broken == true;
                     break;
                 case 2:
                     //door jam
                     hitChoice = Random.Range(1, doors.Length);
-                    //doors(hitChoice).jam == true;
+                    doors[hitChoice].jam == true;
                     break;
                 default:
                     //nothing
@@ -76,5 +76,5 @@ public class ShipScript : MonoBehaviour
 
         return engineLevel;
     }
-*/
+
 }
