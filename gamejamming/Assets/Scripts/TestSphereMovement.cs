@@ -66,8 +66,9 @@ public class TestSphereMovement : NetworkBehaviour
         rb.velocity = new Vector3(xInput, rb.velocity.y, zInput).normalized * movementSpeed;
 
 		bool playerHasHorizontalSpeed = Mathf.Abs(GetComponent<Rigidbody>().velocity.z) > Mathf.Epsilon;
+		bool playerHasVerticalSpeed = Mathf.Abs(GetComponent<Rigidbody>().velocity.x) > Mathf.Epsilon;
 
-        if (playerHasHorizontalSpeed)
+		if (playerHasHorizontalSpeed)
         {
             playerAnimator.SetBool("isWalking", true);
 
@@ -80,8 +81,21 @@ public class TestSphereMovement : NetworkBehaviour
         
         }
 
-        //Rotate in Direction of Movement
-        if (rb.velocity.magnitude != 0) 
+
+		if (playerHasVerticalSpeed)
+		{
+			playerAnimator.SetBool("isWalking", true);
+
+		}
+
+		else
+		{
+
+			playerAnimator.SetBool("isWalking", false);
+
+		}
+		//Rotate in Direction of Movement
+		if (rb.velocity.magnitude != 0) 
         {
 
             robotModel.transform.rotation = Quaternion.Lerp(robotModel.transform.rotation, Quaternion.LookRotation(rb.velocity), 2f);
