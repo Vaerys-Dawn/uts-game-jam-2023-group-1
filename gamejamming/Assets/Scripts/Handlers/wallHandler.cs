@@ -27,7 +27,6 @@ public class wallHandler : MonoBehaviour
         if(hole == false && broken == true)
         {
             //spawn object
-            Debug.Log("hole made");
             brokenWall = (GameObject)Instantiate(brokenWallPrefab, brokenWallPos.position, brokenWallPos.rotation);
             brokenWall.transform.SetParent(brokenWallPos);
             
@@ -37,7 +36,6 @@ public class wallHandler : MonoBehaviour
 
         if (brokenWall == null)
         {
-            Debug.Log("no more hole");
             hole = false;
             broken = false;
         }
