@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1095313985229412579}
   - component: {fileID: 4153660431839349966}
   - component: {fileID: 4281430145427659694}
-  - component: {fileID: 5954483438041449053}
+  - component: {fileID: 6599037462395070197}
   m_Layer: 0
   m_Name: spawner
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1095313985229412579
 MeshFilter:
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5954483438041449053
+--- !u!114 &6599037462395070197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,8 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1373808594309746450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bde6acdabb075844a9bf551815f31321, type: 3}
+  m_Script: {fileID: 11500000, guid: 38b1b252fee44ee43918615bde5a060d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnOffset: {x: 0, y: 5, z: 0}
-  resource: {fileID: 7947282967789894300, guid: 45f20243551a86044be69d4c4577481f, type: 3}
+  resource: {fileID: 7947282967789894300, guid: 389af9d971762714fa4a4de5ccd046a2, type: 3}
+  startTime: 5
+  isColliding: 0

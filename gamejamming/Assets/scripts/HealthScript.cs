@@ -76,10 +76,7 @@ public class HealthScript : MonoBehaviour
 
         if (collider.tag == "Door")
         {
-            if (collider.toClose)
-            {
-                RemoveCharge();
-            }
+            
 
         }
     }
