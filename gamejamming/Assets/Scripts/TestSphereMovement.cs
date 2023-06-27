@@ -61,7 +61,6 @@ public class TestSphereMovement : NetworkBehaviour
         if (!enableInput || !healthScript.alive) { return; }
         float xInput = Input.GetAxisRaw("Horizontal");
         float zInput = Input.GetAxisRaw("Vertical");
-<<<<<<< Updated upstream:gamejamming/Assets/Scripts/TestSphereMovement.cs
         rb.velocity = new Vector3(xInput, rb.velocity.y, zInput).normalized * movementSpeed;
 
 		bool playerHasHorizontalSpeed = Mathf.Abs(GetComponent<Rigidbody>().velocity.z) > Mathf.Epsilon;
@@ -86,9 +85,6 @@ public class TestSphereMovement : NetworkBehaviour
             robotModel.transform.rotation = Quaternion.Lerp(robotModel.transform.rotation, Quaternion.LookRotation(rb.velocity), 2f);
         
         }
-
-	}
-=======
         rb.velocity = new Vector3(xInput * movementSpeed, rb.velocity.y, zInput * movementSpeed);
         if (coolDown <= 0)
         { 
@@ -100,5 +96,4 @@ public class TestSphereMovement : NetworkBehaviour
         }
         coolDown--;
     }
->>>>>>> Stashed changes:gamejamming/Assets/TestSphereMovement.cs
 }
