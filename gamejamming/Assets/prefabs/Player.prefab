@@ -353,6 +353,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5192a1c46f13be148b575314a77733b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2402348814734570153}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5192a1c46f13be148b575314a77733b8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6732288777235890331}
   m_SourcePrefab: {fileID: 100100000, guid: 5192a1c46f13be148b575314a77733b8, type: 3}
 --- !u!95 &2461327868081369719 stripped
 Animator:
@@ -382,3 +385,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotAnimatorController: {fileID: 2461327868081369719}
+--- !u!114 &6732288777235890331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9188355751986328247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f66ec9f5386a2945a7e8bef17a66484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carrying: {fileID: 0}
+  carryingPosition: {x: 0, y: 0, z: 1}

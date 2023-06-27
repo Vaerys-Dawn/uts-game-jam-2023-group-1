@@ -45,6 +45,6 @@ public class PlayerController : NetworkBehaviour
         if (carrying == null) { 
             return;
         }
-        carrying.SetPositionAndRotation(transform.position + carryingPosition, transform.rotation);
+        carrying.transform.position = transform.position + carryingPosition;
     }
 }
