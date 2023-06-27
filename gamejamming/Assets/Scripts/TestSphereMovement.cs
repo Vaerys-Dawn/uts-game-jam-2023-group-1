@@ -85,7 +85,7 @@ public class TestSphereMovement : NetworkBehaviour
             robotModel.transform.rotation = Quaternion.Lerp(robotModel.transform.rotation, Quaternion.LookRotation(rb.velocity), 2f);
         
         }
-
+        rb.velocity = new Vector3(xInput * movementSpeed, rb.velocity.y, zInput * movementSpeed);
         if (coolDown <= 0)
         { 
             if (rb.velocity.x > 0.2f || rb.velocity.z > 0.2f || rb.velocity.x < -0.2f || rb.velocity.z < -0.2f)
