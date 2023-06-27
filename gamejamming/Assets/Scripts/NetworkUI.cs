@@ -23,5 +23,6 @@ public class NetworkUI : MonoBehaviour
         GameObject.Find("ServerButton").SetActive(false);
         GameObject.Find("HostButton").SetActive(false);
         GameObject.Find("ClientButton").SetActive(false);
+        GameObject.Find("NotAmongUs").SetActive(false);
     }
 }
