@@ -16,8 +16,13 @@ public class PlayerController : NetworkBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        switch(carrying.tag)
+        switch(other.tag)
         {
+            case "Player":
+                HealthScript healthScript = other.transform.GetComponent<HealthScript>();
+                if (healthScript != null && !healthScript.alive)
+                    carrying = other.transform;
+                break;
             case "Ammo":
             case "Fuel":
             case "RepairKit":
@@ -35,6 +40,9 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (carrying == null) { 
+            return;
+        }
         carrying.SetPositionAndRotation(transform.position + carryingPosition, transform.rotation);
     }
 }
