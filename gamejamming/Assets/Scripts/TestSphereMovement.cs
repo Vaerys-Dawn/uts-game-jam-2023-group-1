@@ -44,8 +44,10 @@ public class TestSphereMovement : NetworkBehaviour
         }
     }
 
-    private void OnDestroy()
+    override
+    public void OnDestroy()
     {
+        base.OnDestroy();
         players.Remove(this);
     }
 
