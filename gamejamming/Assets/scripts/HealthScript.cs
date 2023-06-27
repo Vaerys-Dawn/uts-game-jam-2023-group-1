@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class HealthScript : MonoBehaviour
+public class HealthScript : NetworkBehaviour
 {
     // Start is called before the first frame update
 
@@ -16,6 +17,10 @@ public class HealthScript : MonoBehaviour
     public int slowchargeMult = 2;
     public bool alive = true;
     private int nextUpdate = 1;
+
+    //Animator
+    [SerializeField] private Animator robotAnimator;
+    [SerializeField] private float animTime;
 
     public void Awake()
     {
@@ -50,16 +55,36 @@ public class HealthScript : MonoBehaviour
 
     public void RemoveCharge()
     {
+        // todo play remove charge sound
         energy--;
         ClampEnergy();
     }
 
     private void ClampEnergy()
     {
-        if (energy < 0) energy = 0;
+        if (energy < 0) 
+        { 
+            energy = 0;
+            robotAnimator.SetBool("isFalling", true);
+            StartCoroutine(StopFallAnimation());
+        
+        }
         if (energy > maxEnergy) energy = maxEnergy;
-        if (energy == 0) alive = false;
+        if (energy == 0)
+        {
+            alive = false;
+            rigid.velocity.Set(0, 0, 0);
+        }
         if (energy == 10) alive = true;
+    }
+
+
+    IEnumerator StopFallAnimation() 
+    {
+        yield return new WaitForSeconds(animTime);
+        robotAnimator.SetBool("isFalling", false);
+    
+    
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -76,7 +101,19 @@ public class HealthScript : MonoBehaviour
 
         if (collider.tag == "Door")
         {
-            
+
+            print("door found");
+            doorHandler handler = collider.GetComponent<doorHandler>();
+            if (handler.IsClosed())
+            {
+                if (handler.jam)
+                {
+                    RemoveCharge();
+                }
+                handler.OpenDoor();
+                RemoveCharge();
+            }
+
 
         }
     }
