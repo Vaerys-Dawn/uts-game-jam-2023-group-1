@@ -22,7 +22,7 @@ public class engineHandler : MonoBehaviour
     {
         if (enginePower > 0)
         {
-            enginePower -= Time.deltaTime * 0.05;
+            enginePower -= Time.deltaTime * 0.05f;
         }
         if (enginePower < 0) 
         {
