@@ -12,7 +12,22 @@ public class resourceDropoff : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        string type = gameObject.tag;
+        switch (type) {
+            case "Ammo":
+                //red
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                break;
+            case "Fuel":
+                //Yellow
+                gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+                break;
+            case "Repair":
+                //Green
+                gameObject.GetComponent<Renderer>().material.color = Color.green;
+                break;
+        }
     }
 
     // Update is called once per frame
