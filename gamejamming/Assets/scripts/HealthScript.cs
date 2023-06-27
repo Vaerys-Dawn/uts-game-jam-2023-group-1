@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class HealthScript : MonoBehaviour
+public class HealthScript : NetworkBehaviour
 {
     // Start is called before the first frame update
 
@@ -77,6 +78,7 @@ public class HealthScript : MonoBehaviour
 
         if (collider.tag == "Door")
         {
+            print("door found");
             doorHandler handler = collider.GetComponent<doorHandler>();
             if (handler.IsClosed())
             {

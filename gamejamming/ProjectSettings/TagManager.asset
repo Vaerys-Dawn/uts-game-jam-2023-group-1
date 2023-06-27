@@ -9,6 +9,8 @@ TagManager:
   - Fuel
   - Ammo
   - RepairKit
+  - Repair
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,7 @@ public class TestSphereMovement : NetworkBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 lookAngle = new Vector3(60, 0, 0);
     [SerializeField] private Vector3 lookPosition = new Vector3(0, 20, -10);
+    private HealthScript healthScript;
     bool enableInput = false;
     // Start is called before the first frame update
 
@@ -17,6 +18,8 @@ public class TestSphereMovement : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         players.Add(this);
+        healthScript = GetComponent<HealthScript>();
+
    
         if (IsOwner && IsClient)
         {
@@ -48,7 +51,8 @@ public class TestSphereMovement : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!enableInput) { return; }
+        if (!healthScript.alive) rb.velocity = Vector3.zero;
+        if (!enableInput || !healthScript.alive) { return; }
         float xInput = Input.GetAxisRaw("Horizontal");
         float zInput = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector3(xInput * movementSpeed, rb.velocity.y, zInput * movementSpeed);
