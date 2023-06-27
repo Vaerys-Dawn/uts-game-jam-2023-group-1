@@ -93,7 +93,7 @@ public class TestSphereMovement : NetworkBehaviour
             if (rb.velocity.x > 0.2f || rb.velocity.z > 0.2f || rb.velocity.x < -0.2f || rb.velocity.z < -0.2f)
             {
                 step.Play();
-                coolDown = 8;
+                coolDown = 15;
             }
         }
         coolDown--;
