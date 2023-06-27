@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : NetworkBehaviour
 {
-    private Transform carrying;
+    public Transform carrying;
     public Vector3 carryingPosition = new Vector3(2, 0, 0);
     // Start is called before the first frame update
 
@@ -14,8 +14,10 @@ public class PlayerController : NetworkBehaviour
         carrying = null;
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
+        Collider other = collision.collider;
+        print("bonk");
         switch(other.tag)
         {
             case "Player":
