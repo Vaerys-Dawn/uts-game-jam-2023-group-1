@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7020995341407884880}
   - component: {fileID: 1180526429830941641}
   - component: {fileID: 5435179330811681416}
+  - component: {fileID: 4770939322232339150}
   m_Layer: 0
   m_Name: dropoff
   m_TagString: Untagged
@@ -149,3 +150,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Value: 0
   pickup: 1
+  type: 0
+--- !u!114 &4770939322232339150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971710551531468962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

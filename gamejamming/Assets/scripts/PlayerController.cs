@@ -16,9 +16,8 @@ public class PlayerController : NetworkBehaviour
         heldScript = null;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Collider other = collision.collider;
         print("bonk");
         switch(other.tag)
         {
@@ -26,7 +25,7 @@ public class PlayerController : NetworkBehaviour
                 HealthScript healthScript = other.transform.GetComponent<HealthScript>();
                 if (healthScript != null && !healthScript.alive)
                 {
-                    carrying = other.transform;
+                    carrying = other.transform.parent;
                     heldScript = healthScript;
                 }
      
@@ -34,7 +33,7 @@ public class PlayerController : NetworkBehaviour
             case "Ammo":
             case "Fuel":
             case "RepairKit":
-                carrying = other.transform;
+                carrying = other.transform.parent;
                 heldScript = null;
                 break;
         }

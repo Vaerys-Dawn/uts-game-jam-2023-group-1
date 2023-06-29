@@ -11,6 +11,7 @@ TagManager:
   - RepairKit
   - Repair
   - Door
+  - Spawner
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Spawner
+  - Resource
+  - Ship
   - 
   - 
   - 

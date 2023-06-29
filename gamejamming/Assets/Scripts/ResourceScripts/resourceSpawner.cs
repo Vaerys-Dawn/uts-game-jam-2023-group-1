@@ -1,75 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class resourceSpawner : MonoBehaviour
+public class resourceSpawner : NetworkBehaviour
 {
 
+    public enum ResourceType
+    {
+        AMMO,
+        FUEL,
+        REPAIRKIT
+
+    }
 
     public static float dropHeight = 5f;
     public Vector3 spawnOffset = new Vector3(0, dropHeight, 0);
     public GameObject resource;
+    public GameObject SpawnedResource;
+    private bool connected = false;
 
-    public float startTime = 5f;
-    private float counter;
-    public bool isColliding;
+    [SerializeField] private ResourceType type;
+
+    public static string getResourceTag(ResourceType type)
+    {
+        switch (type)
+        {
+            case ResourceType.AMMO:
+                return "Ammo";
+            case ResourceType.FUEL:
+                return "Fuel";
+            case ResourceType.REPAIRKIT:
+                return "RepairKit";
+            default: return null;
+        }
+    }
 
 
     // Start is called before the first frame update
-    void Start()
+    override
+    public void OnNetworkSpawn()
     {
-        spawnResource();
-        counter = startTime;
+        base.OnNetworkSpawn();
+        connected = true;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (isColliding) {
-            counter = startTime;
-        }
-
-        else {
-            counter -= Time.deltaTime;
-
-            if (counter <= 0) {
-                spawnResource();
-            }
-        }
-    }
-
-    void OnCollisionEnter (Collision col) {
-        if (col.gameObject.tag == gameObject.tag || col.gameObject.tag == "Player") {
-            Debug.Log("spawned");
-            isColliding = true;
-            
-        }
-    }
-
-    void OnCollisionExit (Collision col) { 
-        if (col.gameObject.tag == gameObject.tag) {
-            isColliding = false;
-        }
-        
+        if (connected && SpawnedResource == null) spawnResource();
     }
 
     void spawnResource() {
-        counter = startTime;
-        GameObject resourceGO = (GameObject)Instantiate(resource, spawnOffset + transform.position, Quaternion.identity);
-        resourceGO.tag = gameObject.tag;
-        string resourceType = resourceGO.tag;
-        switch (resourceType) {
-            case "Ammo":
+        if (!IsHost) return;
+        SpawnedResource = (GameObject)Instantiate(resource, spawnOffset + transform.position, Quaternion.identity);
+        SpawnedResource.tag = getResourceTag(type);
+        SpawnedResource.transform.GetChild(0).tag = getResourceTag(type);
+        switch (type) {
+            case ResourceType.AMMO:
                 //red
-                resourceGO.GetComponent<Renderer>().material.color = Color.red;
+                SpawnedResource.GetComponent<Renderer>().material.color = Color.red;
                 break;
-            case "Fuel":
+            case ResourceType.FUEL:
                 //Yellow
-                resourceGO.GetComponent<Renderer>().material.color = Color.yellow;
+                SpawnedResource.GetComponent<Renderer>().material.color = Color.yellow;
                 break;
-            case "Repair":
+            case ResourceType.REPAIRKIT:
                 //Green
-                resourceGO.GetComponent<Renderer>().material.color = Color.green;
+                SpawnedResource.GetComponent<Renderer>().material.color = Color.green;
                 break;
         }
     }

@@ -20,6 +20,7 @@ public class TestSphereMovement : NetworkBehaviour
     // Start is called before the first frame update
 
     public static List<TestSphereMovement> players = new List<TestSphereMovement>();
+    private bool leftStep = false;
 
     public override void OnNetworkSpawn()
     {
@@ -51,13 +52,8 @@ public class TestSphereMovement : NetworkBehaviour
         players.Remove(this);
     }
 
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!healthScript.alive) rb.velocity = Vector3.zero;
         if (!enableInput || !healthScript.alive) { return; }
@@ -68,46 +64,30 @@ public class TestSphereMovement : NetworkBehaviour
 		bool playerHasHorizontalSpeed = Mathf.Abs(GetComponent<Rigidbody>().velocity.z) > Mathf.Epsilon;
 		bool playerHasVerticalSpeed = Mathf.Abs(GetComponent<Rigidbody>().velocity.x) > Mathf.Epsilon;
 
-		if (playerHasHorizontalSpeed)
-        {
-            playerAnimator.SetBool("isWalking", true);
-
-        }
-
-        else 
-        {
-
-            playerAnimator.SetBool("isWalking", false);
-        
-        }
+		if (playerHasHorizontalSpeed) playerAnimator.SetBool("isWalking", true);
+        else playerAnimator.SetBool("isWalking", false);
 
 
-		if (playerHasVerticalSpeed)
-		{
-			playerAnimator.SetBool("isWalking", true);
+		if (playerHasVerticalSpeed) playerAnimator.SetBool("isWalking", true);
+        else playerAnimator.SetBool("isWalking", false);
 
-		}
-
-		else
-		{
-
-			playerAnimator.SetBool("isWalking", false);
-
-		}
+		
 		//Rotate in Direction of Movement
 		if (rb.velocity.magnitude != 0) 
         {
-
             robotModel.transform.rotation = Quaternion.Lerp(robotModel.transform.rotation, Quaternion.LookRotation(rb.velocity), 2f);
-        
         }
         rb.velocity = new Vector3(xInput * movementSpeed, rb.velocity.y, zInput * movementSpeed);
         if (coolDown <= 0)
         { 
             if (rb.velocity.x > 0.2f || rb.velocity.z > 0.2f || rb.velocity.x < -0.2f || rb.velocity.z < -0.2f)
             {
+                if (leftStep) step.pitch = 1f;
+                else step.pitch = 0.75f;
+                step.volume = 0.2f;
+                leftStep = !leftStep;
                 step.Play();
-                coolDown = 70;
+                coolDown = 15;
             }
         }
         coolDown--;

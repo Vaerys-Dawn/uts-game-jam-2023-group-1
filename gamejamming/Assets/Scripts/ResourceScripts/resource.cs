@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class resource : MonoBehaviour
+public class resource : NetworkBehaviour
 {
 
     public float startTime = 5f;
@@ -18,33 +19,23 @@ public class resource : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        if (isColliding) {
-            counter = startTime;
-        }
-
+        if (transform.position.y < -10) Destroy(this.transform.parent.gameObject);
+        if (isColliding) { return; }
         else {
             counter -= Time.deltaTime;
 
             if (counter <= 0) {
-                Destroy(gameObject);
+                Destroy(this.transform.parent.gameObject);
             }
         }
         
     }
 
-    void OnCollisionEnter (Collision col) {
-        if (col.gameObject.tag == gameObject.tag || col.gameObject.tag == "Player") {
-            Debug.Log("touching");
-            isColliding = true;
-            
-        } 
-    }
-
-    void OnCollisionExit (Collision col) {
-        isColliding = false;
+    private void OnTriggerStay(Collider col)
+    {
+        isColliding = col.CompareTag("Spawner") || col.CompareTag("Player");
     }
 
 }

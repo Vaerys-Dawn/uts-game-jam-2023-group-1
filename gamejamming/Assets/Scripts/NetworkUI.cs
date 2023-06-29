@@ -4,6 +4,7 @@ using System;
 using UnityEngine.UI;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NetworkUI : MonoBehaviour
 {
@@ -13,9 +14,25 @@ public class NetworkUI : MonoBehaviour
 
     private void Awake()
     {
-    	serverButton.onClick.AddListener(() => NetworkManager.Singleton.StartServer());
-    	hostButton.onClick.AddListener(() => NetworkManager.Singleton.StartHost());
-    	clientButton.onClick.AddListener(() => NetworkManager.Singleton.StartClient());
+    	serverButton.onClick.AddListener(() => {
+            NetworkManager.Singleton.StartServer();
+            //toggleActive();
+            }
+        );
+    	hostButton.onClick.AddListener(() => {
+            NetworkManager.Singleton.StartHost();
+            //toggleActive();
+        });
+    	clientButton.onClick.AddListener(() => {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            NetworkManager.Singleton.StartClient();
+            //toggleActive();
+        });
+    }
+
+    private void toggleActive()
+    {
+        this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 
     public void onClick()
